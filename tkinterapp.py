@@ -21,6 +21,17 @@ window.geometry('500x800')
 
 window.configure(bg='gray28')
 
+#ADD text field to be the content of the file note
+
+
+
+content = Text(window, width=25, bg='white smoke')
+
+content.insert(END, '\n')
+
+
+content.grid(column=0, row=35, pady=10)
+
 #functions
 
 def newfn():
@@ -34,15 +45,25 @@ def newfn():
     largetime = asctime(localtime(time()))
     smalltime = largetime[11:13] + "." + largetime[14:16]
     matter = mtrc.get()
+    attType = AttendType.get()
+    attOn = AttendOn.get()
     d1 = docx.Document()
     d2 = d1.save(f'File Note {matter} {today} {smalltime}.docx')
     d2 = docx.Document(f"File Note {matter} {today} {smalltime}.docx")
-    d2.add_paragraph(f"Client:   {matter}")
+    d2.add_paragraph('FILE NOTE\n\n')
+    d2.add_paragraph(f'Date:          {today}')
+    d2.add_paragraph(f'Time:          {largetime[10:16]}')
+    d2.add_paragraph(f"Client:       {matter}\n\n")
+    d2.add_paragraph(f'Attendance type:      {attType}\n\n')
+    d2.add_paragraph(f'Attendance upon:       {attOn}\n\n')
+    d2.add_paragraph('Notes:')
     d2.add_paragraph(content.get(1.0,END))
     d2.save(f'File Note {matter} {today} {smalltime}.docx')
+    content.delete(1.0, END)
 
-#todo - add variables for multiple choices re attendance type and attendance with
 
+def cleardata():
+    content.delete(1.0, END)
 
 #add menu
 
@@ -50,7 +71,8 @@ menu = Menu(window)
 
 new_item = Menu(menu)
 
-new_item.add_command(label='New')
+
+new_item.add_command(label='New', command=cleardata)
 
 menu.add_cascade(label='File', menu=new_item)
 
@@ -133,11 +155,8 @@ lbl2 = Label(window, text="Enter content of the file note", font=("Arial Bold", 
 
 lbl2.grid(column=0, row=30, pady=10)
 
-#ADD text field to be the content of the file note
 
-content = Text(window, width=25, bg='white smoke')
 
-content.grid(column=0, row=35, pady=10)
 
 
 #add button which is currently set to print matter selected from combobox
