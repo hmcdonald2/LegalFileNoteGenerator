@@ -11,3 +11,5 @@ If you want to run it yourself, you will need to change the references to specif
 Currently it is set up to build on an existing word document. It takes that word document, which is effectively a template but is not a .dotx file. 
 
 It opens it, resaves it with the current date and time as the file name, and appends the entered text into the file. 
+
+I am just learning so the code is obviously ugly. 
