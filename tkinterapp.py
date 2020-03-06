@@ -9,6 +9,8 @@ from tkinter import Menu
 
 from tkinter import filedialog
 
+import docx
+
 from os import path
 
 window = Tk()
@@ -27,17 +29,19 @@ def newfn():
     from time import localtime, time, asctime
     import os
     from datetime import date
-    os.chdir('/Users/annanugent/Desktop/Harry/PythonPractice/FileNotes')
+    # os.chdir('INTENDED DESTINATION OF FILE NOTE')
     today = date.today()
     largetime = asctime(localtime(time()))
     smalltime = largetime[11:13] + "." + largetime[14:16]
     matter = mtrc.get()
-    d1 = docx.Document('./FNTemp1.docx')
+    d1 = docx.Document()
     d2 = d1.save(f'File Note {matter} {today} {smalltime}.docx')
     d2 = docx.Document(f"File Note {matter} {today} {smalltime}.docx")
     d2.add_paragraph(f"Client:   {matter}")
     d2.add_paragraph(content.get(1.0,END))
     d2.save(f'File Note {matter} {today} {smalltime}.docx')
+
+#todo - add variables for multiple choices re attendance type and attendance with
 
 
 #add menu
