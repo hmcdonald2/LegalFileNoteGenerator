@@ -13,3 +13,5 @@ Currently it is set up to build on an existing word document. It takes that word
 It opens it, resaves it with the current date and time as the file name, and appends the entered text into the file. 
 
 I am just learning so the code is obviously ugly. 
+
+You will need to install the python-docx module (pip install --user python-docx==0.8.10 (install python-docx, not docx))
